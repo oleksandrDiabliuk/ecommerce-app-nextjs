@@ -37,8 +37,6 @@ async function getCategories() {
 		})
 	};
 
-	const a: Navigation = mutatedData;
-
 	return mutatedData;
 }
 
