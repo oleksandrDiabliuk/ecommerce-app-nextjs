@@ -34,3 +34,9 @@ interface Category {
 export interface Navigation {
 	categories: Category[];
 }
+
+export type Props = {
+	params: {
+		id: string;
+	};
+};
