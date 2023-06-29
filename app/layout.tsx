@@ -1,6 +1,8 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Header from '@/components/Header/Header';
+import Footer from '@/components/Footer/Footer';
+
 import { Navigation } from '@/types/types';
 
 const inter = Inter({ subsets: ['latin'] })
@@ -49,9 +51,15 @@ export default async function RootLayout({
 
 	return (
 		<html lang="en">
-			<body className={inter.className}>
-				<Header {...categories} />
-				{children}
+			<body className={`${inter.className} h-screen`}>
+				<div className="min-h-screen relative">
+					<div className="pb-10">
+						<Header {...categories} />
+						{children}
+						<Footer />
+					</div>
+
+				</div>
 			</body>
 		</html>
 	)
