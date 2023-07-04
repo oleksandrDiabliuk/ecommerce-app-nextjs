@@ -7,7 +7,6 @@ import { Suspense } from 'react';
 import Loading from './loading';
 
 export default async function Category({ params: { id } }: Props) {
-
 	const res = await fetch(`https://fakestoreapi.com/products/category/${id}`);
 	const products: Product[] = await res.json();
 	const categoryName = id.replace(/%20/g, ' ');
