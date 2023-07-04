@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment, useEffect } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 import Link from 'next/link';
 
@@ -10,6 +10,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '@/store/slices/cartSlice';
 import { RootState } from '@/store/index';
+import { ProductInCart } from '@/types/types';
 
 type Props = {
 	openCart: boolean,
@@ -17,13 +18,25 @@ type Props = {
 }
 
 export default function Cart(props: Props) {
+	const { cart, total } = useSelector((state: RootState) => state);
+
+	const [prevCart, setPrevCart] = useState<ProductInCart[]>(cart);
+	const [prevTotal, setPrevTotal] = useState<number>(total);
+
 	const dispatch = useDispatch();
 
-	const { cart, total } = useSelector((state: RootState) => state.cartSlice);
 
 	useEffect(() => {
-		props.setOpenCart(true);
-	}, [cart, total]);
+		if (prevCart === undefined) {
+			return;
+		}
+
+		if (JSON.stringify(prevCart) !== JSON.stringify(cart) || prevTotal !== total) {
+			props.setOpenCart(true);
+			setPrevCart(cart);
+			setPrevTotal(total);
+		}
+	}, [cart, total, prevCart, prevTotal]);
 
 	return (
 		<Transition.Root show={props.openCart} as={Fragment}>
