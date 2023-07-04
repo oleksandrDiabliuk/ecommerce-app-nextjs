@@ -1,14 +1,20 @@
 "use client";
 
 import { Fragment, useState } from "react";
+
 import Link from "next/link";
 
 import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
 import { Bars3Icon, ShoppingBagIcon, XMarkIcon } from "@heroicons/react/24/outline";
+
 import { motion, useScroll } from "framer-motion";
 
-import Cart from "../Cart/Cart";
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/index';
+
 import { Navigation } from "@/types/types";
+
+import Cart from "../Cart/Cart";
 
 function classNames(...classes: string[]): string {
 	return classes.filter(Boolean).join(" ");
@@ -17,7 +23,10 @@ function classNames(...classes: string[]): string {
 export default function Header(props: Navigation) {
 	const [open, setOpen] = useState(false);
 	const [openCart, setOpenCart] = useState(false);
+
 	const { scrollYProgress } = useScroll();
+
+	const totalItems = useSelector((state: RootState) => state.cartSlice.totalItemsInCart);
 
 	const handleCartClick = () => {
 		setOpenCart(true);
@@ -39,7 +48,6 @@ export default function Header(props: Navigation) {
 					>
 						<div className="fixed inset-0 bg-black bg-opacity-25" />
 					</Transition.Child>
-
 					<div className="fixed inset-0 z-40 flex">
 						<Transition.Child
 							as={Fragment}
@@ -61,7 +69,6 @@ export default function Header(props: Navigation) {
 										<XMarkIcon className="h-6 w-6" aria-hidden="true" />
 									</button>
 								</div>
-
 								{/* Links */}
 								<Tab.Group as="div" className="mt-2">
 									<div className="border-b border-gray-200">
@@ -108,7 +115,6 @@ export default function Header(props: Navigation) {
 										))}
 									</Tab.Panels>
 								</Tab.Group>
-
 								<div className="space-y-6 border-t border-gray-200 px-4 py-6">
 									<div className="flow-root">
 										<a href="#" className="-m-2 block p-2 font-medium text-gray-900">
@@ -126,12 +132,10 @@ export default function Header(props: Navigation) {
 					</div>
 				</Dialog>
 			</Transition.Root>
-
 			<header className="relative bg-white">
 				<p className="flex h-10 items-center justify-center bg-blue-700 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
 					Get free delivery on orders over $100
 				</p>
-
 				<nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 					<div className="border-b border-gray-200">
 						<div className="flex h-16 items-center">
@@ -139,14 +143,12 @@ export default function Header(props: Navigation) {
 								<span className="sr-only">Open menu</span>
 								<Bars3Icon className="h-6 w-6" aria-hidden="true" />
 							</button>
-
 							{/* Logo */}
 							<div className="ml-4 flex lg:ml-0">
 								<Link href="/">
 									<span className="text-black font-bold text-xl">NextShop</span>
 								</Link>
 							</div>
-
 							{/* Flyout menus */}
 							<Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch z-30">
 								<div className="flex h-full space-x-8">
@@ -166,7 +168,6 @@ export default function Header(props: Navigation) {
 															{category.name}
 														</Popover.Button>
 													</div>
-
 													<Transition
 														as={Fragment}
 														enter="transition ease-out duration-200"
@@ -179,7 +180,6 @@ export default function Header(props: Navigation) {
 														<Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
 															{/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
 															<div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
-
 															<div className="relative bg-white">
 																<div className="mx-auto max-w-7xl px-8">
 																	<div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
@@ -220,7 +220,6 @@ export default function Header(props: Navigation) {
 									))}
 								</div>
 							</Popover.Group>
-
 							<div className="ml-auto flex items-center">
 								<div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
 									<a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
@@ -231,7 +230,6 @@ export default function Header(props: Navigation) {
 										Create account
 									</a>
 								</div>
-
 								{/* Cart */}
 								<div className="ml-4 flow-root lg:ml-6">
 									<button onClick={handleCartClick} className="group -m-2 flex items-center p-2">
@@ -239,8 +237,7 @@ export default function Header(props: Navigation) {
 											className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
 											aria-hidden="true"
 										/>
-										<span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
-										<span className="sr-only">items in cart, view bag</span>
+										<span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{totalItems}</span>
 									</button>
 								</div>
 							</div>
@@ -250,7 +247,7 @@ export default function Header(props: Navigation) {
 				{<Cart openCart={openCart} setOpenCart={setOpenCart} />}
 			</header>
 			<motion.div
-				className="fixed top-0 left-0 right-0 h-2 bg-blue-600 z-50"
+				className="fixed top-0 left-0 right-0 h-2 bg-blue-700 z-50"
 				style={{ scaleX: scrollYProgress }}
 			/>
 		</div>

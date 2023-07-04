@@ -4,6 +4,8 @@ import { StarIcon } from '@heroicons/react/20/solid';
 
 import { Props, Product } from '@/types/types';
 
+import Button from '@/components/Button/Button';
+
 function classNames(...classes: string[]): string {
 	return classes.filter(Boolean).join(' ')
 }
@@ -16,7 +18,6 @@ export default async function ProductDetails({ params: { id } }: Props) {
 		<div className="flex flex-col justify-between gap-28 pt-6">
 			<nav aria-label="Breadcrumb">
 				<ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-					{/* {product.breadcrumbs.map((breadcrumb) => ( */}
 					<li>
 						<div className="flex items-center">
 							<Link href={`/products/category/${product.category}`} className="mr-2 text-sm font-medium text-gray-900 hover:text-blue-700">
@@ -34,7 +35,6 @@ export default async function ProductDetails({ params: { id } }: Props) {
 							</svg>
 						</div>
 					</li>
-					{/* ))} */}
 					<li className="text-sm">
 						<Link href={`/product/${id}`} aria-current="page" className="font-medium text-gray-500 hover:text-gray-600">
 							{product.title}
@@ -81,12 +81,7 @@ export default async function ProductDetails({ params: { id } }: Props) {
 							</p>
 						</div>
 					</div>
-					<button
-						type="submit"
-						className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-blue-700 px-8 py-3 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-					>
-						Add to bag
-					</button>
+					<Button {...product} />
 				</div>
 
 				<div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">

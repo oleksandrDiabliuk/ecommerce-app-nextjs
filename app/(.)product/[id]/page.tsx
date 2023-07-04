@@ -3,12 +3,13 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { Product } from "@/types/types";
+import { useDispatch } from 'react-redux';
+import { cartActions } from '@/store/slices/cartSlice';
 
 import { Dialog } from "@headlessui/react";
-import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
 
+import { Product } from "@/types/types";
 import { Props } from '@/types/types';
 
 function classNames(...classes: string[]): string {
@@ -16,10 +17,18 @@ function classNames(...classes: string[]): string {
 }
 
 function Modal({ params: { id } }: Props) {
-	let [isOpen, setIsOpen] = useState(true);
+	const [isOpen, setIsOpen] = useState(true);
 	const [product, setProduct] = useState<Product>();
 	const [loading, setLoading] = useState(false);
+
 	const router = useRouter();
+
+	const dispatch = useDispatch();
+
+	const handleAddToCartClick = (product: Product) => {
+		router.back();
+		dispatch(cartActions.addToCart(product));
+	}
 
 	useEffect(() => {
 		async function fetchProduct() {
@@ -94,7 +103,7 @@ function Modal({ params: { id } }: Props) {
 									</div>
 
 									<div className="space-y-3 text-sm">
-										<button className="button w-full h-10 border-2 bg-blue-600 text-white border-transparent hover:border-blue-600 hover:bg-transparent hover:text-black transition-all">
+										<button onClick={() => handleAddToCartClick(product!)} className="button w-full h-10 border-2 bg-blue-600 text-white border-transparent hover:border-blue-600 hover:bg-transparent hover:text-black transition-all">
 											Add to bag
 										</button>
 										<button

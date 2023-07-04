@@ -1,7 +1,10 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
+
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
+
+import { Providers } from './provider';
 
 import { Navigation } from '@/types/types';
 
@@ -19,7 +22,7 @@ enum CategoryName {
 	Jewelery = "jewelery",
 }
 
-async function getCategories() {
+async function getCategories(): Promise<Navigation> {
 	const res = await fetch("https://fakestoreapi.com/products/categories");
 	const data: string[] = await res.json();
 
@@ -54,11 +57,12 @@ export default async function RootLayout({
 			<body className={`${inter.className} h-screen`}>
 				<div className="min-h-screen relative">
 					<div className="pb-10">
-						<Header {...categories} />
-						{children}
-						<Footer />
+						<Providers>
+							<Header {...categories} />
+							{children}
+							<Footer />
+						</Providers>
 					</div>
-
 				</div>
 			</body>
 		</html>
