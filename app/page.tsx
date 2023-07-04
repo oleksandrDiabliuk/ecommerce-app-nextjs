@@ -80,7 +80,6 @@ export default function Homepage() {
 									</div>
 								</div>
 							</div>
-
 							<Link
 								href="/products"
 								className="inline-block rounded-md border border-transparent bg-blue-700 px-8 py-3 text-center font-medium text-white hover:bg-blue-700"
