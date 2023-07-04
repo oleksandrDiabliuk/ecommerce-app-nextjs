@@ -1,6 +1,3 @@
-import Image from 'next/image';
-import Link from 'next/link';
-
 import ProductTile from '@/components/ProductTile/ProductTile';
 
 import { Product } from "@/types/types";
