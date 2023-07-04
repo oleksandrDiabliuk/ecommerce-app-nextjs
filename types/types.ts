@@ -21,7 +21,7 @@ interface Item {
 
 interface Section {
 	id: string;
-	name: CategoryName.Women | CategoryName.Men | CategoryName.Jewelery;
+	name: CategoryName.Women | CategoryName.Men | CategoryName.Jewelery | string;
 	items: Item[];
 }
 
@@ -39,4 +39,9 @@ export type Props = {
 	params: {
 		id: string;
 	};
+};
+
+export type ProductInCart = Product & {
+	qty: number;
+	totalItemPrice: number;
 };
