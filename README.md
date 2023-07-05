@@ -1,4 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next JS Ecommerce App
+
+This is Ecommerce app written using Next JS. Here you can find and browse and buy products (clothes, accessories, jewelery). Application fully adapted for all devices (desktop, tablet, mobile). Products data is taken from Fake Store API.
+
+## General design of the app
+
+Home Page: 
+
+![image](https://github.com/oleksandrDiabliuk/ecommerce-app-nextjs/assets/56929527/ed690ae2-f045-4e8a-962e-6e95fe62999c)
+
+All Product page: 
+
+![image](https://github.com/oleksandrDiabliuk/ecommerce-app-nextjs/assets/56929527/5d8ae59a-49a8-42fd-83c1-199f78c47890)
+
+Product Quick View: 
+
+![image](https://github.com/oleksandrDiabliuk/ecommerce-app-nextjs/assets/56929527/4f14aa29-68b9-4afe-822a-8876f14b7667)
+
+Product Details Page:
+
+![image](https://github.com/oleksandrDiabliuk/ecommerce-app-nextjs/assets/56929527/5f0e6109-955c-44a4-8d85-8b95f46bd4b9)
+
+Shopping Cart: 
+
+![image](https://github.com/oleksandrDiabliuk/ecommerce-app-nextjs/assets/56929527/4843fd9e-5b2b-4791-b668-ad532c9ffb06)
+
+## Features
+
+-   Product Quick View
+-   Cart Sidebar
+-   Add/Remove Product in cart
+-   Change product quantitity in cart
+-   Progress bar
+-   Showing Cart Sidebar when adding product in cart
+
+## Pages 
+
+-   Home page
+-   All Products Page
+-   Category Page (Women, Men, Jewelery)
+-   Product Details Page
+
+## Technologies
+
+Technologies used:
+
+-   Next JS
+-   TailwindCSS
+-   PostCSS
+-   HeadlessUI
+-   Hero Icons
+-   Framer Motion
+-   Redux Toolkit
+-   Fake Store API
 
 ## Getting Started
 
@@ -13,22 +66,3 @@ pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
